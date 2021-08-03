@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld :msg="msg" />
+    <ProductList />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import ProductList from "../components/ProductList.vue";
 import axios from "axios";
 
 export default {
@@ -18,11 +17,10 @@ export default {
     };
   },
   components: {
-    HelloWorld,
+    ProductList,
   },
   async created() {
     const response = await axios.get("/api/test");
-    console.log(response)
     this.msg = await response.data;
   },
 };
