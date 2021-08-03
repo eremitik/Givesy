@@ -13,8 +13,9 @@ app.use(express.static(path.resolve(__dirname, "../dist")))
 
 
 // routes
-app.get("/api/test", (req, res) => {
-    res.send("Hello from API")
+app.get("/api/test", async (req, res) => {
+    const data = await knex("test_table").first()
+    res.send(data.content)
 });
 
 
