@@ -26,6 +26,33 @@ app.get("/api/products", async (req, res) => {
   res.send(products);
 })
 
+app.get("/api/products/:productID/prices", async (req, res) => {
+  const prices = await stripe.prices.list(
+    { product: req.params.productID }
+  );
+  res.send(prices);
+})
+
+app.post("/api/prices/:priceID/buy", async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: [
+      'card',
+    ],
+    line_items: [
+      {
+        // TODO: replace this with the `price` of the product you want to sell
+        price: req.params.priceID,
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: `${YOUR_DOMAIN}/success.html`,
+    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+  });
+
+  res.redirect(303, session.url)
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: [

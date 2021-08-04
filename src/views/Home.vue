@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <router-view />
+    <p>Hello {{ $store.state.userEmail }}</p>
     <ProductList />
   </div>
 </template>
@@ -11,11 +13,6 @@ import axios from "axios";
 
 export default {
   name: "Home",
-  data() {
-    return {
-      msg: "default message",
-    };
-  },
   components: {
     ProductList,
   },
@@ -25,3 +22,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#nav a {
+  padding: 60px;
+}
+</style>
