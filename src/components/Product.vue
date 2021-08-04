@@ -4,37 +4,12 @@
     <img class="product-image" :src="product.images[0]" />
     <p class="product-title">{{product.name}}</p>
     <br>
-
     <div v-if="showInfo">
-
     <div class="product-container">
     <p class="product-description">{{product.description}}</p>
       <div class="product-button-container">
-      <div>
-        <StripeCheckout
-          ref="oneTimeCheckoutRef"
-          mode="payment"
-          pk="pk_test_51JKIuDIZNIF6strfLEPdU6rl4q2U2jH5V3q0MFnE0XbG5fAYTcW4EuBMH7MDb8AIVfNFWkftlvo2Gzi6lW5h8BXj00SER3EiUN"
-          :line-items="oneTimePrice"
-          :success-url="successURL"
-          :cancel-url="cancelURL"
-          @loading="v => loading = v"
-        />
         <button class="product-button" @click="makeOneTimePayment">Donate</button>
-        <!-- <b-button @click="makeOneTimePayment">Donate!</b-button> -->
-      </div>
-      <div>
-        <StripeCheckout
-          ref="recurringCheckoutRef"
-          mode="subscription"
-          pk="pk_test_51JKIuDIZNIF6strfLEPdU6rl4q2U2jH5V3q0MFnE0XbG5fAYTcW4EuBMH7MDb8AIVfNFWkftlvo2Gzi6lW5h8BXj00SER3EiUN"
-          :line-items="recurringPrice"
-          :success-url="successURL"
-          :cancel-url="cancelURL"
-          @loading="v => loading = v"
-        />
         <button class="product-button" @click="makeRecurringPayment">Recurring</button>
-      </div>
       </div>
     </div>
   </div>
@@ -43,52 +18,78 @@
 </template>
 
 <script>
-import axios from "axios"
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import axios from "axios";
 
 export default {
   props: {
     product: Object,
   },
-  components: {
-    StripeCheckout,
+  computed: {
+    domainUrl() {
+      return this.$store.state.domainUrl;
+    },
   },
   async created() {
-    const response = await axios.get(`/api/products/${this.product.id}/prices`)
-    const prices = response.data.data.filter(price => price.active);
-    this.oneTimePrice = prices.filter(price => price.type === "one_time").map(price => {return {price: price.id, quantity: 1}});
-    this.recurringPrice = prices.filter(price => price.type === "recurring").map(price => {return {price: price.id, quantity: 1}});
+    const response = await axios.get(`/api/products/${this.product.id}/prices`);
+    const prices = response.data.data.filter((price) => price.active);
+    this.oneTimePrice = prices
+      .filter((price) => price.type === "one_time")
+      .map((price) => {
+        return { price: price.id, quantity: 1 };
+      });
+    this.recurringPrice = prices
+      .filter((price) => price.type === "recurring")
+      .map((price) => {
+        return { price: price.id, quantity: 1 };
+      });
   },
-  data () {
+  data() {
     return {
       showInfo: false,
       loading: false,
       oneTimePrice: [],
       recurringPrice: [],
-      // lineItems: [
-      //   // {
-      //   //   // price: this.product.id, // The id of the one-time price you created in your Stripe dashboard
-      //   //   price: "price_1JKJuHIZNIF6strfOwfEPFUS", // The id of the one-time price you created in your Stripe dashboard
-      //   //   quantity: 1,
-      //   // },
-      // ],
-      successURL: 'http://localhost:8080/',
-      cancelURL: 'http://localhost:8080/',
     };
   },
   methods: {
-    makeOneTimePayment() {
-      this.$refs.oneTimeCheckoutRef.redirectToCheckout();
+    async createCheckoutSession(options) {
+      const session = await axios.post("/api/create-checkout-session", options);
+      return session;
     },
-    makeRecurringPayment() {
-      this.$refs.recurringCheckoutRef.redirectToCheckout();
+    async makeOneTimePayment() {
+      const response = await this.createCheckoutSession({
+        success_url:
+          this.domainUrl + "/success?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: this.domainUrl,
+        payment_method_types: ["card"],
+        line_items: this.oneTimePrice,
+        mode: "payment",
+      });
+      const session = response.data;
+      console.log(session);
+      window.location.href = session.url;
+    },
+    async makeRecurringPayment() {
+      if (this.$store.state.userEmail) {
+        const response = await this.createCheckoutSession({
+          client_reference_id: this.$store.state.userUID,
+          success_url:
+            this.domainUrl + "/success?session_id={CHECKOUT_SESSION_ID}",
+          cancel_url: this.domainUrl,
+          payment_method_types: ["card"],
+          line_items: this.oneTimePrice,
+          mode: "payment",
+        });
+        const session = response.data;
+        console.log(session);
+        window.location.href = session.url;
+      }
     },
     toggleShowInfo() {
       this.showInfo = !this.showInfo;
-    }
-  }
-
-}
+    },
+  },
+};
 </script>
 
 <style>
@@ -159,6 +160,4 @@ export default {
     color: white;
 
   }
-
 </style>
-      

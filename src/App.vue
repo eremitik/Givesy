@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "App",
   computed: {
-    userEmail () {
+    userEmail() {
       return this.$store.state.userEmail;
     },
   },
   mounted() {
-    this.getUserInfo()
+    this.getUserInfo();
   },
   methods: {
     logout() {
@@ -30,43 +30,40 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-            alert('Successfully logged out');
-            this.$router.push('/');
+          alert("Successfully logged out");
+          this.$router.push("/");
         })
-        .catch(error => {
-            alert(error.message);
-            this.$router.push('/');
+        .catch((error) => {
+          alert(error.message);
+          this.$router.push("/");
         });
     },
     getUserInfo() {
       firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-              this.$store.commit("setUserEmail", user.email);
-              console.log('THIS IS THE APP.VUE PAGE AND USER EMAIL ', user.email)
-          } else {
-              console.log("something went wrong with getting the user info")
-          }
+        if (user) {
+          this.$store.commit("setUserUID", user.uid);
+          this.$store.commit("setUserEmail", user.email);
+        }
       });
     },
-  }
-}
+  },
+};
 </script>
-
 
 <style>
 /* @import './App.css'; */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap");
 
-html, 
+html,
 body {
-    background-color: white;
+  background-color: white;
 }
 
 #app {
   font-family: "Montserrat", sans-serif;
   text-align: center;
   color: #2c3e50;
-} 
+}
 
 #nav {
   padding: 0px;
