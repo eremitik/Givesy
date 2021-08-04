@@ -1,9 +1,12 @@
 <template>
-  <p>This is a product</p>
+  <p>{{product.name}}</p>
 </template>
 
 <script>
 export default {
+  props: {
+    product: Object,
+  }
 
 }
 </script>

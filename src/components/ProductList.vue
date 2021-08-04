@@ -1,25 +1,18 @@
 <template>
   <div>
-    <Product />
+    <Product v-for="product of $store.state.products" :key="product.id" :product="product"/>
   </div>
 </template>
 
 <script>
-require("dotenv").config()
 import Product from "./Product.vue"
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default {
     components: {
         Product,
     },
     async created() {
-        // await this.$store.dispatch("loadProducts");
-
-        console.log("calling stripe");
-        const products = await stripe.products.list();
-        console.log("finished calling stripe")
-        console.log(products);
+        this.$store.dispatch("loadProducts");
     }
 }
 </script>

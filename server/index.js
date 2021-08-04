@@ -21,6 +21,11 @@ app.get("/api/test", async (req, res) => {
     res.send(data.content)
 });
 
+app.get("/api/products", async (req, res) => {
+  const products = await stripe.products.list();
+  res.send(products);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: [

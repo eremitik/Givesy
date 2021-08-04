@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+import axios from "axios";
 
 export default createStore({
   state: {
@@ -11,11 +11,10 @@ export default createStore({
     }
   },
   actions: {
-    async loadProducts({ commit }) {
-      const products = await stripe.products.list({
-        limit: 3,
-      });
-      commit("setProducts", products);
+    async loadProducts({commit}) {
+      const response = await axios.get("/api/products")
+      console.log(response.data.data)
+      commit("setProducts", response.data.data);
     },
   },
   modules: {},
