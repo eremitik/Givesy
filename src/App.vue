@@ -1,22 +1,32 @@
 <template>
-  <p class="app-name">Givesy️</p>
-  <div v-if="userEmail" id="nav">
-    <button @click="logout">Logout</button>
-    <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
-  </div>
-  <div v-else id="nav">
-    <router-link :to="{ name: 'Signup' }">Sign up</router-link> |
-    <router-link :to="{ name: 'Login' }">Login</router-link>
-  </div>
+    <Nav />
+    <Splash />
+
+    <p>Hello {{ $store.state.userEmail }}</p>
+    <div v-if="userEmail" id= "nav">
+      <button @click="logout">Logout</button>
+      <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
+    </div> 
+    <div v-else id= "nav">
+      <router-link :to="{ name: 'Signup' }">Sign up</router-link> | 
+      <router-link :to="{ name: 'Login' }">Login</router-link>
+      
+    </div>
   <router-view />
 </template>
 
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import Nav from "./views/Nav";
+import Splash from "./views/Splash";
 
 export default {
   name: "App",
+  components: {
+    Nav,
+    Splash,
+  },
   computed: {
     userEmail() {
       return this.$store.state.userEmail;
@@ -58,6 +68,7 @@ export default {
 html,
 body {
   background-color: white;
+  margin: 0;
 }
 
 #app {

@@ -1,7 +1,8 @@
 <template>
   <div class="product">
     <div class="product-card">
-      <div @click="toggleShowInfo">
+      <!-- <div @click="toggleShowInfo"> -->
+      <div>
         <img class="product-image" :src="product.images[0]" />
         <p class="product-title">{{ product.name }}</p>
       </div>
@@ -51,7 +52,7 @@ export default {
   },
   data() {
     return {
-      showInfo: false,
+      showInfo: true,
       loading: false,
       oneTimePrice: [],
       recurringPrice: [],
@@ -89,19 +90,21 @@ export default {
         window.location.href = session.url;
       }
     },
-    toggleShowInfo() {
-      this.showInfo = !this.showInfo;
-    },
+    // toggleShowInfo() {
+      // this.showInfo = !this.showInfo;
+    // },
   },
 };
 </script>
 
 <style>
+body {
+  /* margin-left: 20px; */
+}
 .product {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-left: 6px;
 }
 .product-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -109,7 +112,6 @@ export default {
   border-radius: 15px;
   width: 400px;
   margin-bottom: 25px;
-  align-items: center;
 }
 
 .product-card:hover {
@@ -126,7 +128,7 @@ export default {
   font-size: 15px;
   text-align: left;
   color: grey;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .product-container {
@@ -136,6 +138,7 @@ export default {
 .product-image {
   border-radius: 15px 15px 0 0;
   width: 100%;
+  max-height: 250px;
 }
 
 .product-button-container {
@@ -147,10 +150,11 @@ export default {
 
 .product-button {
   background: white;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 20px;
+  padding: 5px 10px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   transition: 0.3s;
   color: black;
