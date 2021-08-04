@@ -9,6 +9,7 @@ export default createStore({
   mutations: {
     setProducts(state, products) {
       state.products = products;
+      console.log(state.products)
     },
     setUserEmail(state, email) {
       state.userEmail = email
@@ -17,13 +18,11 @@ export default createStore({
   actions: {
     async loadProducts({commit}) {
       const response = await axios.get("/api/products")
-      commit("setProducts", response.data.data);
+      commit("setProducts", response.data.data.filter(product => product.active));
     },
-    async placeOrder(store, product) {
-      console.log(product);
-      let response = await axios.get(`/api/products/${product.id}/prices`);
-      const firstPrice = response.data.data[0]
-      response = await axios.post(`/api/prices/${firstPrice.id}/buy`)
+    async makeOneTimePayment(store, prices) {
+      const price = prices.filter(price => price.type === "one_time")[0];
+      await axios.post(`/api/prices/${price.id}/oneTimePayment`)
     }
   },
   modules: {},
