@@ -14,7 +14,6 @@ export default createStore({
   mutations: {
     setProducts(state, products) {
       state.products = products;
-      console.log(state.products);
     },
     setUserEmail(state, email) {
       state.userEmail = email;

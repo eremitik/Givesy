@@ -8,11 +8,20 @@ import axios from "axios";
 
 export default {
   async mounted() {
-    console.log("mounted");
     const response = await axios.get(
       `/api/sessions/${this.$route.query.session_id}`
     );
-    console.log(response);
+    const customerID = response.data.customer;
+    const latestSubscription = await axios.get(
+      `/api/customers/${customerID}/latestsubscription`
+    );
+    const subscriptionID = latestSubscription.data.id;
+    const userUID = response.data.client_reference_id;
+
+    await axios.post("/api/subscriptions", {
+      id: subscriptionID,
+      user_id: userUID,
+    });
   },
 };
 </script>

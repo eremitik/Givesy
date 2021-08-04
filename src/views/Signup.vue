@@ -12,6 +12,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import axios from "axios";
 
 export default {
   name: "Signup",
@@ -23,24 +24,23 @@ export default {
     };
   },
   methods: {
-    register() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          //saveUser(userCredential.user.uid);
-          alert("Successfully registered!✨");
-          this.email = "";
-          this.password = "";
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
+    async register() {
+      try {
+        const userCredential = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password);
+        await this.saveUser(userCredential.user);
+        alert("Successfully registered!✨");
+        this.email = "";
+        this.password = "";
+        this.$router.push("/");
+      } catch (err) {
+        console.error(err);
+      }
     },
-    // saveUser(uid) {
-
-    // },
+    async saveUser(user) {
+      await axios.post("/api/users", user);
+    },
   },
 };
 </script>

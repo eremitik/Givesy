@@ -14,10 +14,18 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "../dist")));
 
 // routes
-// app.post("api/users", async (req, res) => {
+app.get("/api/customers/:customerID/latestsubscription", async (req, res) => {
+  const response = await stripe.subscriptions.list({
+    customer: req.params.customerID,
+  });
+  const subscriptions = response.data;
+  res.send(subscriptions.pop());
+});
 
-//   res.send()
-// })
+app.post("/api/subscriptions", async (req, res) => {
+  await knex("subscriptions").insert(req.body);
+  res.sendStatus(204);
+});
 
 app.get("/api/products", async (req, res) => {
   const products = await stripe.products.list();
@@ -49,7 +57,6 @@ app.post("/api/prices/:priceID/oneTimePayment", async (req, res) => {
 
 app.post("/api/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create(req.body);
-  console.log(session);
   res.send(session);
 });
 
