@@ -1,7 +1,7 @@
 <template>
   <div class="home">
+
     <router-view />
-    <p>Hello {{ $store.state.userEmail }}</p>
     <ProductList class="product"/>
   </div>
 </template>

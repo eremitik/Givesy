@@ -1,5 +1,8 @@
 <template>
-    <p class="app-name">Givesy️</p>
+    <Nav />
+    <Splash />
+
+    <p>Hello {{ $store.state.userEmail }}</p>
     <div v-if="userEmail" id= "nav">
       <button @click="logout">Logout</button>
     </div> 
@@ -13,9 +16,15 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import Nav from "./views/Nav";
+import Splash from "./views/Splash";
 
 export default {
   name: "App",
+  components: {
+    Nav,
+    Splash,
+  },
   computed: {
     userEmail() {
       return this.$store.state.userEmail;
@@ -57,6 +66,7 @@ export default {
 html,
 body {
   background-color: white;
+  margin: 0;
 }
 
 #app {
