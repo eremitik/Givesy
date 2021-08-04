@@ -1,11 +1,12 @@
 <template>
-  <div v-if="userEmail" id="nav">
-    <button @click="logout">Logout</button>
-  </div>
-  <div v-else id="nav">
-    <router-link :to="{ name: 'Signup' }">Sign up</router-link> |
-    <router-link :to="{ name: 'Login' }">Login</router-link>
-  </div>
+    <p class="app-name">Givesy️</p>
+    <div v-if="userEmail" id= "nav">
+      <button @click="logout">Logout</button>
+    </div> 
+    <div v-else id= "nav">
+      <router-link :to="{ name: 'Signup' }">Sign up</router-link> | 
+      <router-link :to="{ name: 'Login' }">Login</router-link>
+    </div>
   <router-view />
 </template>
 
@@ -51,7 +52,7 @@ export default {
 
 <style>
 /* @import './App.css'; */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap");
 
 html,
 body {
@@ -65,7 +66,7 @@ body {
 }
 
 #nav {
-  padding: 30px;
+  padding: 0px;
 }
 
 #nav a {
@@ -75,5 +76,13 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.app-name {
+  font-size: 80px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 60px;
+  margin-top: 30px;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="home">
     <router-view />
     <p>Hello {{ $store.state.userEmail }}</p>
-    <ProductList />
+    <ProductList class="product"/>
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
 </script>
 
 <style scoped>
+.app-name {
+  font-size: 60px;
+  font-weight: bold;
+  color: black;
+}
 #nav a {
   padding: 60px;
 }
