@@ -9,16 +9,11 @@
 <script>
 // @ is an alias to /src
 import ProductList from "../components/ProductList.vue";
-import axios from "axios";
 
 export default {
   name: "Home",
   components: {
     ProductList,
-  },
-  async created() {
-    const response = await axios.get("/api/test");
-    this.msg = await response.data;
   },
 };
 </script>
