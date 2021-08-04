@@ -2,7 +2,7 @@
   <div class="product" @click="toggleShowInfo">
     <img class="product-image" :src="product.images[0]" />
     <p>{{product.name}}</p>
-    <p>product info here</p>
+    <p>{{product.description}}</p>
     <div class="product-info" v-if="showInfo">
       <div>
         <StripeCheckout
@@ -15,6 +15,19 @@
           @loading="v => loading = v"
         />
         <button @click="makeOneTimePayment">Donate!</button>
+        <!-- <b-button @click="makeOneTimePayment">Donate!</b-button> -->
+      </div>
+      <div>
+        <StripeCheckout
+          ref="recurringCheckoutRef"
+          mode="subscription"
+          pk="pk_test_51JKIuDIZNIF6strfLEPdU6rl4q2U2jH5V3q0MFnE0XbG5fAYTcW4EuBMH7MDb8AIVfNFWkftlvo2Gzi6lW5h8BXj00SER3EiUN"
+          :line-items="recurringPrice"
+          :success-url="successURL"
+          :cancel-url="cancelURL"
+          @loading="v => loading = v"
+        />
+        <button @click="makeRecurringPayment">Recurring!</button>
       </div>
     </div>
   </div>
@@ -51,7 +64,7 @@ export default {
       //   // },
       // ],
       successURL: 'http://localhost:8080/',
-      cancelURL: 'http://localhost:8080/cancel.html',
+      cancelURL: 'http://localhost:8080/',
     };
   },
   methods: {

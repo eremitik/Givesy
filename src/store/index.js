@@ -20,10 +20,14 @@ export default createStore({
       const response = await axios.get("/api/products")
       commit("setProducts", response.data.data.filter(product => product.active));
     },
-    async makeOneTimePayment(store, prices) {
-      const price = prices.filter(price => price.type === "one_time")[0];
-      await axios.post(`/api/prices/${price.id}/oneTimePayment`)
-    }
+    // async makeOneTimePayment(store, prices) {
+    //   const price = prices.filter(price => price.type === "one_time")[0];
+    //   await axios.post(`/api/prices/${price.id}/oneTimePayment`)
+    // },
+    // async makeRecurringPayment(store, prices) {
+    //   const price = prices.filter(price => price.type === "recurring")[0];
+    //   await axios.post(`/api/prices/${price.id}/oneTimePayment`)
+    // }
   },
   modules: {},
 });
