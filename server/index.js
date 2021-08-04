@@ -14,10 +14,20 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "../dist")));
 
 // routes
-// app.post("api/users", async (req, res) => {
+app.get("/api/customers/:customerID/latestsubscription", async (req, res) => {
+  const response = await stripe.subscriptions.list({
+    customer: req.params.customerID,
+  });
+  const subscriptions = response.data;
+  console.log(subscriptions);
+  res.send(subscriptions.pop());
+});
 
-//   res.send()
-// })
+app.post("/api/subscriptions", async (req, res) => {
+  console.log(req.body);
+  await knex("subscriptions").insert(req.body);
+  res.sendStatus(204);
+});
 
 app.get("/api/products", async (req, res) => {
   const products = await stripe.products.list();

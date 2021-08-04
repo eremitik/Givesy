@@ -76,6 +76,7 @@ export default {
       window.location.href = session.url;
     },
     async makeRecurringPayment() {
+      console.log(this.$store.state.userEmail);
       if (this.$store.state.userEmail) {
         const response = await this.createCheckoutSession({
           client_reference_id: this.$store.state.userUID,
@@ -83,8 +84,8 @@ export default {
             this.domainUrl + "/success?session_id={CHECKOUT_SESSION_ID}",
           cancel_url: this.domainUrl,
           payment_method_types: ["card"],
-          line_items: this.oneTimePrice,
-          mode: "payment",
+          line_items: this.recurringPrice,
+          mode: "subscription",
         });
         const session = response.data;
         console.log(session);
