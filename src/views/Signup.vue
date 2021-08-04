@@ -39,9 +39,7 @@ export default {
       }
     },
     async saveUser(user) {
-      console.log("HELLO");
       await axios.post("/api/users", user);
-      console.log("GOODBYE");
     },
   },
 };

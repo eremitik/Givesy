@@ -19,12 +19,10 @@ app.get("/api/customers/:customerID/latestsubscription", async (req, res) => {
     customer: req.params.customerID,
   });
   const subscriptions = response.data;
-  console.log(subscriptions);
   res.send(subscriptions.pop());
 });
 
 app.post("/api/subscriptions", async (req, res) => {
-  console.log(req.body);
   await knex("subscriptions").insert(req.body);
   res.sendStatus(204);
 });
@@ -59,7 +57,6 @@ app.post("/api/prices/:priceID/oneTimePayment", async (req, res) => {
 
 app.post("/api/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create(req.body);
-  console.log(session);
   res.send(session);
 });
 

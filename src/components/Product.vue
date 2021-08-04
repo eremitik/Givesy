@@ -72,11 +72,9 @@ export default {
         mode: "payment",
       });
       const session = response.data;
-      console.log(session);
       window.location.href = session.url;
     },
     async makeRecurringPayment() {
-      console.log(this.$store.state.userEmail);
       if (this.$store.state.userEmail) {
         const response = await this.createCheckoutSession({
           client_reference_id: this.$store.state.userUID,
@@ -88,7 +86,6 @@ export default {
           mode: "subscription",
         });
         const session = response.data;
-        console.log(session);
         window.location.href = session.url;
       }
     },
