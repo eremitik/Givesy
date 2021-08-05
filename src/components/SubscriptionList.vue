@@ -1,7 +1,8 @@
 <template>
   <div>
-    <p>{{ test }}</p>
-    <Subscription />
+        <!-- <Product v-for="product of $store.state.products" :key="product.id" :product="product"/> -->
+
+    <Subscription v-for="subscription of $store.state.subscriptions" :key="subscription.id" :subscription="subscription"/>
   </div>
 </template>
 
@@ -13,11 +14,9 @@ export default {
   components: {
     Subscription,
   },
-  data() {
-    return {
-      test: "This is the subscription list",
-    };
-  },
+  async created() {
+    this.$store.dispatch("loadSubscriptions");
+  }
 };
 </script>
 

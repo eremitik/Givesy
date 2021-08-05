@@ -1,17 +1,16 @@
 <template>
   <div>
-    <p>{{ test }}</p>
+    <p>{{ subscription.id }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "Subscription",
-  data() {
-    return {
-      test: "This is the subscription view",
-    };
-  },
+  props: {
+    subscription: Object,
+  }
+
 };
 </script>
 
