@@ -2,7 +2,7 @@
     <Nav />
     <Splash />
 
-    <p>Hello {{ $store.state.userEmail }}</p>
+    <!-- <p>Hello {{ $store.state.userEmail }}</p> -->
     <div v-if="userEmail" id= "nav">
       <button @click="logout">Logout</button>
       <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
@@ -13,6 +13,7 @@
       
     </div>
   <router-view />
+  <Footer />
 </template>
 
 <script>
@@ -20,12 +21,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import Nav from "./views/Nav";
 import Splash from "./views/Splash";
+import Footer from "./views/Footer";
 
 export default {
   name: "App",
   components: {
     Nav,
     Splash,
+    Footer,
   },
   computed: {
     userEmail() {

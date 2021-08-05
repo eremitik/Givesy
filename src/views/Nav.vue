@@ -44,7 +44,7 @@ export default {
     float: left;
     font-weight: bold;
     font-size: 40px;
-    line-height: 60px;
+    line-height: 65px;
     padding: 0px 0px 0px 10px;
     color: black;
   }
