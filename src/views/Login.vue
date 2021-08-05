@@ -15,6 +15,9 @@
           placeholder="password"
           v-model="password"
         /><br />
+        <p class="new-user">New user? 
+          <router-link class="create-user" :to="{ name: 'Signup' }">Create an account</router-link>
+        </p>
         <button class="input-button" @click="login">Continue</button>
       </form>
     </div>
@@ -77,6 +80,12 @@ export default {
   margin-top: 100px;
   height: 400px;
   width: 400px;
+}
+
+.create-user {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(255, 20, 147);
 }
 
 .title {

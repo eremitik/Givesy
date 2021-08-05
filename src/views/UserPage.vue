@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p class="temp">User Page</p>
+  <div class="dashboard-container">
+    <p class="dashboard-title">History</p>
     <SubscriptionList />
   </div>
 </template>
@@ -17,7 +17,15 @@ export default {
 </script>
 
 <style>
-.temp {
-  padding-top: 100px;
-}
+  .dashboard-container {
+    padding-top: 100px;
+    height: 55vh;
+    overflow: auto;
+  }
+
+  .dashboard-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+  }
 </style>

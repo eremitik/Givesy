@@ -36,6 +36,7 @@ export default createStore({
         "setProducts",
         response.data.data.filter((product) => product.active)
       );
+      console.log(response)
     },
     async loadSubscriptions({ commit, state }) {
       console.log(state.userEmail);
