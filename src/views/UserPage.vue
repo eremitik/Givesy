@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="test">
     <p>User Page</p>
     <SubscriptionList />
   </div>
@@ -16,4 +16,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#test {
+  margin-top: 80px;
+}
+</style>
