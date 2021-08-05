@@ -80,16 +80,17 @@ export default {
     font-weight: bold;
     transition: 0.3s;
     color: white;
-    align-items: center
+    align-items: center;
+    text-decoration: none;
   }
 
   .splash-button:hover {
-    background: white;
+    background: rgb(215,20,147);
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
     transition: 0.3s;
-    color: black;
+    color: white;
     align-items: center
   }
 

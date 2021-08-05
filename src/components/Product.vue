@@ -97,31 +97,33 @@ export default {
 };
 </script>
 
-<style>
-body {
-  /* margin-left: 20px; */
-}
+<style scope>
 .product {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-left: 6px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* margin-left: 6px; */
 }
 .product-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   border-radius: 15px;
   width: 400px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 16px 0 rgba(88, 64, 64, 0.2);
 }
 
 .product-title {
   font-size: 25px;
   font-weight: bold;
   color: black;
+  margin-bottom: 0;
+  margin-left: 25px;
+  text-align: left;
 }
 
 .product-description {
@@ -132,7 +134,7 @@ body {
 }
 
 .product-container {
-  padding: 2px 26px;
+  padding: 2px 25px;
 }
 
 .product-image {
@@ -143,23 +145,23 @@ body {
 
 .product-button-container {
   margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .product-button {
   background: white;
   border: 2px solid black;
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
   transition: 0.3s;
   color: black;
   margin: 20px 30px 20px 30px;
-  align-items: center;
+  /* align-items: left; */
 }
 
 .product-button:hover {

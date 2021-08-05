@@ -1,10 +1,5 @@
 <template>
   <Splash />
-  <!-- <div class="home">
-    <router-view />
-
-    <ProductList class="product"/>
-  </div> -->
 </template>
 
 <script>

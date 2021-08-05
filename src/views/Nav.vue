@@ -1,8 +1,10 @@
 <template>
   <div class="topnav">
-    <label class="logo">Givesy.</label>
-    <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
-    <router-link class="login" :to="{ name: 'Login' }">Login</router-link>
+    <router-link class="logo" :to="{ name: 'Home' }">Givesy.</router-link>
+      <div class="button-container">
+        <router-link class="login" :to="{ name: 'Login' }">Log in</router-link>
+        <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
+      </div>
   </div> 
 </template>
 
@@ -29,9 +31,8 @@ export default {
   }
 
   .topnav a {
-    float: right;
+    float: left;
     padding: 5px 16px;
-    font-size: 12px;
     font-weight: bold;
   }
 
@@ -46,7 +47,19 @@ export default {
     line-height: 65px;
     padding: 0px 0px 0px 10px;
     color: black;
+    width: 100%;
   }
+
+  .button-container {
+    float: right;
+  }
+
+  .logo {
+    font-size: 45px;
+    text-decoration: none;
+    color: black;
+  }
+
   .signup {
     background: black;
     color: white;
@@ -57,6 +70,8 @@ export default {
     transition: 0.3s;
     margin: 20px 20px 20px 20px;
     align-items: center;
+    text-decoration: none;
+    font-size: 12px;
   }
 
   .signup:hover {
@@ -74,6 +89,8 @@ export default {
     transition: 0.3s;
     margin: 20px 0px 20px 20px;
     align-items: center;
+    text-decoration: none;
+    font-size: 12px;
   }
 
   .login:hover {
