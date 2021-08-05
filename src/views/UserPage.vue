@@ -17,8 +17,7 @@ export default {
 </script>
 
 <style>
-.temp{
+.temp {
   padding-top: 100px;
 }
-
 </style>
