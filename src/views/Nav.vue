@@ -1,10 +1,9 @@
 <template>
   <div class="topnav">
     <label class="logo">Givesy.</label>
-    <a class="signup">Sign up</a>
-    <a class="login">Login</a>
-
-   </div> 
+    <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
+    <router-link class="login" :to="{ name: 'Login' }">Login</router-link>
+  </div> 
 </template>
 
 <script>
