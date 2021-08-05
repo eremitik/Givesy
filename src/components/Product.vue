@@ -65,8 +65,7 @@ export default {
     },
     async makeOneTimePayment() {
       const response = await this.createCheckoutSession({
-        success_url:
-          this.domainUrl + "/success?session_id={CHECKOUT_SESSION_ID}",
+        success_url: this.domainUrl + "/success",
         cancel_url: this.domainUrl,
         payment_method_types: ["card"],
         line_items: this.oneTimePrice,

@@ -36,10 +36,8 @@ export default createStore({
         "setProducts",
         response.data.data.filter((product) => product.active)
       );
-      console.log(response)
     },
     async loadSubscriptions({ commit, state }) {
-      console.log(state.userEmail);
       const response = await axios.get(
         `/api/users/${state.userUID}/subscriptions`
       );
@@ -62,8 +60,6 @@ export default createStore({
           };
         })
       );
-
-      console.log(subscriptions);
 
       commit("setSubscriptions", subscriptions);
     },
