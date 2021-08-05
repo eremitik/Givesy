@@ -12,14 +12,26 @@
 
 <script>
 import Subscription from "./Subscription.vue";
+import { watch } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "SubscriptionList",
   components: {
     Subscription,
   },
+  setup() {
+    const store = useStore();
+    watch(
+      () => store.getters.userUID,
+      () => store.dispatch("loadSubscriptions")
+    );
+  },
   async created() {
     this.$store.dispatch("loadSubscriptions");
+  },
+  mounted() {
+    console.log(this.$store.state.userUID);
   },
 };
 </script>

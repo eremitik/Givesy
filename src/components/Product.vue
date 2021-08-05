@@ -88,10 +88,12 @@ export default {
         });
         const session = response.data;
         window.location.href = session.url;
+      } else {
+        this.$router.push("/login");
       }
     },
     // toggleShowInfo() {
-      // this.showInfo = !this.showInfo;
+    // this.showInfo = !this.showInfo;
     // },
   },
 };

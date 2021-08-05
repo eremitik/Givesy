@@ -26,6 +26,9 @@ export default createStore({
       state.subscriptions = subscriptions;
     },
   },
+  getters: {
+    userUID: (state) => state.userUID,
+  },
   actions: {
     async loadProducts({ commit }) {
       const response = await axios.get("/api/products");
