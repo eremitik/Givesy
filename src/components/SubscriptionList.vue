@@ -30,9 +30,6 @@ export default {
   async created() {
     this.$store.dispatch("loadSubscriptions");
   },
-  mounted() {
-    console.log(this.$store.state.userUID);
-  },
 };
 </script>
 
