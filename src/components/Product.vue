@@ -12,10 +12,10 @@
           <p class="product-description">{{ product.description }}</p>
           <div class="product-button-container">
             <button class="product-button" @click="makeOneTimePayment">
-              Donate
+              Donate $50
             </button>
             <button class="product-button" @click="makeRecurringPayment">
-              Recurring
+              Subscription $25
             </button>
           </div>
         </div>
