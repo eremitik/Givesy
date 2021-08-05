@@ -7,6 +7,10 @@ const knex = require("knex")(require("../knexfile"));
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const PORT = process.env.PORT || 3000;
 const YOUR_DOMAIN = "http://localhost:8080";
+///
+const history = require("connect-history-api-fallback");
+app.use(history());
+///
 
 // setup
 app.use(cors({ origin: "*" }));
@@ -22,19 +26,39 @@ app.get("/api/customers/:customerID/latestsubscription", async (req, res) => {
   res.send(subscriptions.pop());
 });
 
+app.get("/api/subscriptions/:subscriptionID", async (req, res) => {
+  const response = await stripe.subscriptions.retrieve(
+    req.params.subscriptionID
+  );
+  const subscription = response;
+  res.send(subscription);
+});
+
 app.post("/api/subscriptions", async (req, res) => {
   await knex("subscriptions").insert(req.body);
   res.sendStatus(204);
 });
 
+app.delete("/api/subscriptions/:subscriptionID", async (req, res) => {
+  await stripe.subscriptions.del(req.params.subscriptionID);
+  res.sendStatus(204);
+});
+
 app.get("/api/users/:userUID/subscriptions", async (req, res) => {
-  const subscriptions = await knex('subscriptions').select('id').where('user_id', req.params.userUID)
+  const subscriptions = await knex("subscriptions")
+    .select("id")
+    .where("user_id", req.params.userUID);
   res.send(subscriptions);
 });
 
 app.get("/api/products", async (req, res) => {
   const products = await stripe.products.list();
   res.send(products);
+});
+
+app.get("/api/products/:productID", async (req, res) => {
+  const product = await stripe.products.retrieve(req.params.productID);
+  res.send(product);
 });
 
 app.get("/api/products/:productID/prices", async (req, res) => {

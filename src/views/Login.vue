@@ -1,13 +1,23 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-    <form class="form-container" @submit.prevent="login">
-      <p class="title">Log in</p>
-      <input class="inputs" type="email" placeholder="email" v-model="email" /><br>
-      <input class="inputs" type="password" placeholder="password" v-model="password" /><br>
-      <button class="input-button" @click="login">Continue</button>
-    </form>
-  </div>
+      <form class="form-container" @submit.prevent="login">
+        <p class="title">Log in</p>
+        <input
+          class="inputs"
+          type="email"
+          placeholder="email"
+          v-model="email"
+        /><br />
+        <input
+          class="inputs"
+          type="password"
+          placeholder="password"
+          v-model="password"
+        /><br />
+        <button class="input-button" @click="login">Continue</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -32,7 +42,6 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          alert("Login ok!✨");
           this.email = "";
           this.password = "";
           this.$router.push("/");
@@ -52,63 +61,62 @@ export default {
 };
 </script>
 
-
 <style scoped>
-  .login-container {
-    min-height: 65vh;
-  }
+.login-container {
+  min-height: 65vh;
+}
 
-  .login-box {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    margin-top: 100px;
-    height: 400px;
-    width: 400px;
-  }
+.login-box {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  margin-top: 100px;
+  height: 400px;
+  width: 400px;
+}
 
-  .title {
-    font-size: 25px;
-    font-weight: bold;
-    padding-top: 25px;
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 25px;
+}
 
-  }
+.inputs {
+  font-size: 15px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  width: 250px;
+  margin-top: 25px;
+  margin-top: 25px;
+  margin-top: 25px;
+  color: black;
+}
 
-  .inputs {
-    font-size: 15px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid grey;
-    margin-bottom: 20px;
-    font-family: "Montserrat", sans-serif;
-    width: 250px;
-    margin-top: 25px;  
-    color: black;
-  }
+.input-button {
+  background: rgb(255, 20, 147);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s;
+  color: white;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 50px;
+}
 
-  .input-button {
-    background: rgb(255,20,147);
-    border: none;
-    border-radius: 20px;
-    padding: 10px 25px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.3s;
-    color: white;
-    align-items: center;
-    text-decoration: none;
-    margin-top: 50px;
-  }
-
-  .input-button:hover {
-    background: rgb(215,20,147);
-    color: white;
-  }
-
+.input-button:hover {
+  background: rgb(215, 20, 147);
+  color: white;
+}
 </style>

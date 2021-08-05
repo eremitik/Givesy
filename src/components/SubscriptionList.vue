@@ -1,8 +1,12 @@
 <template>
   <div>
-        <!-- <Product v-for="product of $store.state.products" :key="product.id" :product="product"/> -->
+    <!-- <Product v-for="product of $store.state.products" :key="product.id" :product="product"/> -->
 
-    <Subscription v-for="subscription of $store.state.subscriptions" :key="subscription.id" :subscription="subscription"/>
+    <Subscription
+      v-for="subscription of $store.state.subscriptions"
+      :key="subscription.sub.id"
+      :subscription="subscription"
+    />
   </div>
 </template>
 
@@ -16,7 +20,7 @@ export default {
   },
   async created() {
     this.$store.dispatch("loadSubscriptions");
-  }
+  },
 };
 </script>
 
