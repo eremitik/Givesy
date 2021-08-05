@@ -1,20 +1,22 @@
 <template>
-  <div class="home">
-
+  <Splash />
+  <!-- <div class="home">
     <router-view />
+
     <ProductList class="product"/>
-  </div>
+  </div> -->
 </template>
 
 <script>
 // @ is an alias to /src
-import ProductList from "../components/ProductList.vue";
+//import ProductList from "../components/ProductList.vue";
+import Splash from "./Splash.vue"
 
 export default {
   name: "Home",
   components: {
-    ProductList,
-  },
+    Splash,
+  }
 };
 </script>
 

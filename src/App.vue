@@ -1,17 +1,5 @@
 <template>
-    <Nav />
-    <Splash />
-
-    <!-- <p>Hello {{ $store.state.userEmail }}</p> -->
-    <div v-if="userEmail" id= "nav">
-      <button @click="logout">Logout</button>
-      <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
-    </div> 
-    <div v-else id= "nav">
-      <router-link :to="{ name: 'Signup' }">Sign up</router-link> | 
-      <router-link :to="{ name: 'Login' }">Login</router-link>
-      
-    </div>
+  <Nav />
   <router-view />
   <Footer />
 </template>
@@ -20,14 +8,12 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import Nav from "./views/Nav";
-import Splash from "./views/Splash";
 import Footer from "./views/Footer";
 
 export default {
   name: "App",
   components: {
     Nav,
-    Splash,
     Footer,
   },
   computed: {

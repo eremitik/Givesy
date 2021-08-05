@@ -3,7 +3,7 @@
     <img class="splash-pic" src="../../images/pinkvibe.jpeg">
     <p class="splash-title">Help change the <span class="splash-title-underline">world</span>.</p>
     <p class="splash-subtitle">Donate to hundred's of causes today. </p>
-    <button class="splash-button">Get started</button>
+    <router-link class="splash-button" :to="{ name: 'Charities' }">Get Started</router-link>
   </div>
   <div class="splash-spacing">
 
