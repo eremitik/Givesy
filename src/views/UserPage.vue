@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>User Page</p>
+    <p class="temp">User Page</p>
     <SubscriptionList />
   </div>
 </template>
@@ -16,4 +16,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.temp{
+  padding-top: 100px;
+}
+
+</style>
