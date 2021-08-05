@@ -14,7 +14,6 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
-import axios from "axios";
 
 export default {
   name: "Signup",
@@ -28,10 +27,9 @@ export default {
   methods: {
     async register() {
       try {
-        const userCredential = await firebase
+        await firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password);
-        await this.saveUser(userCredential.user);
         alert("Successfully registered!✨");
         this.email = "";
         this.password = "";
@@ -39,9 +37,6 @@ export default {
       } catch (err) {
         console.error(err);
       }
-    },
-    async saveUser(user) {
-      await axios.post("/api/users", user);
     },
   },
 };

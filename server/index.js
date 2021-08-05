@@ -27,6 +27,11 @@ app.post("/api/subscriptions", async (req, res) => {
   res.sendStatus(204);
 });
 
+app.get("/api/users/:userUID/subscriptions", async (req, res) => {
+  const subscriptions = await knex('subscriptions').select('id').where('user_id', req.params.userUID)
+  res.send(subscriptions);
+});
+
 app.get("/api/products", async (req, res) => {
   const products = await stripe.products.list();
   res.send(products);

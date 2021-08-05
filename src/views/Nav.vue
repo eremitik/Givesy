@@ -1,15 +1,40 @@
 <template>
   <div class="topnav">
-    <router-link class="logo" :to="{ name: 'Home' }">Givesy.</router-link>
+     <router-link class="logo" :to="{ name: 'Home' }">Givesy.</router-link>
       <div class="button-container">
-        <router-link class="login" :to="{ name: 'Login' }">Log in</router-link>
-        <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
-      </div>
+    <div v-if="$store.state.userEmail">
+      <button @click="logout">Logout</button>
+      <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
+    </div>
+    <div v-else>
+      <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
+      <router-link class="login" :to="{ name: 'Login' }">Login</router-link>
+    </div>
+        </div>
   </div> 
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
+  name: "Nav",
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("Successfully logged out");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          alert(error.message);
+          this.$router.push("/");
+        });
+    },
+  }
 
 }
 </script>
