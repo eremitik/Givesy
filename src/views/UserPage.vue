@@ -28,5 +28,4 @@ export default {
     font-weight: bold;
     color: black;
   }
-
 </style>
