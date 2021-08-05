@@ -1,6 +1,6 @@
 <template>
-  <div id="test">
-    <p>User Page</p>
+  <div>
+    <p class="temp">User Page</p>
     <SubscriptionList />
   </div>
 </template>
@@ -17,7 +17,8 @@ export default {
 </script>
 
 <style>
-#test {
-  margin-top: 80px;
+.temp{
+  padding-top: 100px;
 }
+
 </style>

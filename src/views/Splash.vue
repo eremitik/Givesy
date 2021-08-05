@@ -2,10 +2,16 @@
   <div class="splash-container">
     <img class="splash-pic" src="../../images/pinkvibe.jpeg">
     <p class="splash-title">Help change the <span class="splash-title-underline">world</span>.</p>
-    <p class="splash-subtitle">Donate to hundred's of causes today. </p>
+    <p class="splash-subtitle">Donate to hundreds of causes today. </p>
     <router-link class="splash-button" :to="{ name: 'Charities' }">Get Started</router-link>
   </div>
   <div class="splash-spacing">
+    <div>
+      <text class="sub-title">What's Givesy?</text>
+      <p class="sub-paragraph"> On Givesy, you are able to donate some of the most well respected non-profit organizations with the ease and simplicity you've come to expect with the modern web.</p>
+      <img class="front-pic" src="../../images/frontpic.png">
+    </div>
+
 
   </div>
   
@@ -34,11 +40,6 @@ export default {
     right: 300px;
     width: 30%;
   }
-
-  .splash-spacing {
-    height: 600px;
-  }
-
   .splash-title {
     position: absolute;
     bottom: 525px;
@@ -92,6 +93,31 @@ export default {
     transition: 0.3s;
     color: white;
     align-items: center
+  }
+
+  .splash-spacing {
+    height: 800px;
+    padding-top: 100px;
+  }
+
+
+  .sub-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .sub-paragraph {
+    font-size: 25px;
+    word-wrap: break-word;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .front-pic {
+    margin-top: 50px;
+    width: 20%;
   }
 
 </style>

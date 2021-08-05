@@ -21,7 +21,7 @@ export default {
 
 <style scope>
   .spacing {
-    padding-top: 600px;
+    /* padding-top: 600px; */
     padding-bottom: 100px;
   }
   .container {

@@ -1,19 +1,17 @@
 <template>
   <div class="topnav">
-    <router-link class="logo" :to="{ name: 'Home' }">Givesy.</router-link>
-    <div class="button-container">
-      <div v-if="$store.state.userEmail">
-        <button @click="logout">Logout</button>
-        <router-link :to="{ name: 'UserPage' }">Dashboard</router-link>
-      </div>
-      <div v-else>
-        <router-link class="signup" :to="{ name: 'Signup' }"
-          >Sign up</router-link
-        >
-        <router-link class="login" :to="{ name: 'Login' }">Login</router-link>
-      </div>
+     <router-link class="logo" :to="{ name: 'Home' }">Givesy.</router-link>
+      <div class="button-container">
+        <div v-if="$store.state.userEmail">
+          <button class="logout" @click="logout">Log out</button>
+          <router-link class="dashboard" :to="{ name: 'UserPage' }">Dashboard</router-link>
+        </div>
+        <div v-else>
+      <router-link class="login" :to="{ name: 'Login' }">Log in</router-link>
+      <router-link class="signup" :to="{ name: 'Signup' }">Sign up</router-link>
     </div>
-  </div>
+        </div>
+  </div> 
 </template>
 
 <script>
@@ -39,10 +37,10 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-}
+<style scope>
+  body {
+    margin: 0;
+  }
 
 .topnav {
   background-color: white;
@@ -118,7 +116,48 @@ body {
   font-size: 12px;
 }
 
-.login:hover {
-  background: rgb(211, 211, 211);
-}
+  .login:hover {
+    background: rgb(211,211,211);
+  }
+
+  .logout {
+    background: black;
+    color: white;
+    border: 6px solid black;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 20px 20px 20px 20px;
+    align-items: center;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .logout:hover {
+    background: rgba(46, 49, 49, 1);
+  }
+
+
+  .dashboard {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 20px 0px 20px 20px;
+    align-items: center;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .dashboard:hover {
+    background: rgb(211,211,211);
+    color: black;
+  }
+
 </style>
