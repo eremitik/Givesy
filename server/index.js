@@ -7,6 +7,10 @@ const knex = require("knex")(require("../knexfile"));
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const PORT = process.env.PORT || 3000;
 const YOUR_DOMAIN = "http://localhost:8080";
+///
+const history = require("connect-history-api-fallback");
+app.use(history());
+///
 
 // setup
 app.use(cors({ origin: "*" }));
