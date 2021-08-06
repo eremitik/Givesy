@@ -5,7 +5,7 @@
       <text class="footer-text-logo">Givesy.</text>
       <p>English</p>
       <p>Japan</p>
-      <p>Currency: JPY</p>
+      <p>Currency: USD</p>
     </div>
     <div class="footer-text">
       <text class="footer-text-title">PRODUCT</text>

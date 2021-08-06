@@ -8,7 +8,7 @@
   <div class="splash-spacing">
     <div>
       <text class="sub-title">What's Givesy?</text>
-      <p class="sub-paragraph"> On Givesy, you are able to donate some of the most well respected non-profit organizations with the ease and simplicity you've come to expect with the modern web.</p>
+      <p class="sub-paragraph"> On Givesy, you're able to donate to some of the most well respected charities in the world with the ease and simplicity you've come to expect with the modern web.</p>
       <img class="front-pic" src="../../images/frontpic.png">
     </div>
 
@@ -96,7 +96,7 @@ export default {
   }
 
   .splash-spacing {
-    height: 800px;
+    height: 850px;
     padding-top: 100px;
   }
 

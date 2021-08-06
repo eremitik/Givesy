@@ -101,7 +101,7 @@ export default {
 <style scope>
 .product {
   /* display: grid; */
-  /* grid-template-columns: repeat(4, 1fr); */
+  /* grid-template-columns: repeat(3, 1fr); */
   /* margin-left: 6px; */
 }
 .product-card {
@@ -109,6 +109,7 @@ export default {
   transition: 0.3s;
   border-radius: 15px;
   width: 400px;
+  /* height: 550px; */
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
