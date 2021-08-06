@@ -53,7 +53,7 @@ export default {
 
 <style>
 .signup-container {
-  min-height: 65vh;
+  min-height: 70vh;
 }
 
 .signup-box {

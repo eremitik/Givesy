@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .login-container {
-  min-height: 65vh;
+  min-height: 70vh;
 }
 
 .login-box {
